@@ -2,7 +2,7 @@
   "name": "ReactPlayground",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/mcochranca/ReactPlayground",
+  "homepage": "https://github.com/Sagelyf/ReactPlayground",
   "dependencies": {
     "@uiw/react-codemirror": "^5.0.0",
     "jszip": "^3.10.0",
