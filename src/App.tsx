@@ -1,7 +1,6 @@
-App.tsx
-
 import React from 'react';
 import CodeEditor from './components/CodeEditor';
+import { javascript } from '@codemirror/lang-javascript';
 
 const App: React.FC = () => {
   return (
@@ -9,6 +8,10 @@ const App: React.FC = () => {
       <CodeEditor />
     </div>
   );
+};
+
+export const SomeOtherComponent = () => {
+  // component logic
 };
 
 export default App;
