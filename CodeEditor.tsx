@@ -1,23 +1,17 @@
-CodeEditor.tsx
-
-
 import React, { useRef, useState } from 'react';
 import CodeMirror, { ReactCodeMirrorRef } from '@uiw/react-codemirror';
+import 'codemirror/lib/codemirror.css';
 import { javascript } from '@codemirror/lang-javascript';
 import JSZip from 'jszip';
 
 const CodeEditor: React.FC = () => {
+  // Declare variables only once:
   const editorRef = useRef<ReactCodeMirrorRef>(null);
   const [code, setCode] = useState<string>("// Write your code here\nconsole.log('Hello World');");
   const [previewSrc, setPreviewSrc] = useState<string>("");
 
-  // When the "Run Code" button is clicked, create a full HTML document
-  // and load it into the preview iframe.
-  const handleRunCode = () => {
-    if (typeof code !== 'string') {
-      console.error("Code is not a valid string");
-      return;
-    }
+  // Function to run the code and update the live preview
+  const handleRunCode = (): void => {
     const fullHtml = `
       <!DOCTYPE html>
       <html lang="en">
@@ -30,32 +24,23 @@ const CodeEditor: React.FC = () => {
       </body>
       </html>
     `;
-    try {
-      const blob = new Blob([fullHtml], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-      setPreviewSrc(url);
-    } catch (error) {
-      console.error("Error creating blob:", error);
-    }
+    const blob = new Blob([fullHtml], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    setPreviewSrc(url);
   };
 
-  // When "Save as Textbundle" is clicked, package the code into a zip archive
-  // (with a text.txt file and an empty assets folder) and trigger its download.
-  const handleSaveTextbundle = async () => {
+  // Function to package the code as a Textbundle (zip) and trigger download
+  const handleSaveTextbundle = async (): Promise<void> => {
     const zip = new JSZip();
     zip.file("text.txt", code);
     zip.folder("assets");
-    try {
-      const blob = await zip.generateAsync({ type: "blob" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = "MyDocument.textbundle";
-      a.click();
-      URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error("Error generating zip file:", error);
-    }
+    const blob = await zip.generateAsync({ type: "blob" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = "MyDocument.textbundle";
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   return (
