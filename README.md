@@ -1,3 +1,6 @@
+
+[![GitHub](https://img.shields.io/badge/GitHub-ReactPlayground-blue?style=flat&logo=github)](https://github.com/yourusername/ReactPlayground)
+
 # ReactPlayground
  
 README.md

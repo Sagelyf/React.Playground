@@ -1,12 +1,27 @@
-index.tsx
+// This file is used to configure the TypeScript compiler.
+// It is used to specify the root files and the compiler options required to compile the project.
 
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
+// The tsconfig.json file is used to specify the root files and the compiler options required to compile the project.
+// The root files are the files that the compiler uses to start the compilation process.
+// The compiler options are used to specify the compiler behavior and the output of the compilation process.
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib":  ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["src"]
+}
