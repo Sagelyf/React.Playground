@@ -1,5 +1,6 @@
 CodeEditor.tsx
 
+
 import React, { useRef, useState } from 'react';
 import CodeMirror, { ReactCodeMirrorRef } from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
@@ -13,6 +14,10 @@ const CodeEditor: React.FC = () => {
   // When the "Run Code" button is clicked, create a full HTML document
   // and load it into the preview iframe.
   const handleRunCode = () => {
+    if (typeof code !== 'string') {
+      console.error("Code is not a valid string");
+      return;
+    }
     const fullHtml = `
       <!DOCTYPE html>
       <html lang="en">
@@ -25,9 +30,13 @@ const CodeEditor: React.FC = () => {
       </body>
       </html>
     `;
-    const blob = new Blob([fullHtml], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    setPreviewSrc(url);
+    try {
+      const blob = new Blob([fullHtml], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      setPreviewSrc(url);
+    } catch (error) {
+      console.error("Error creating blob:", error);
+    }
   };
 
   // When "Save as Textbundle" is clicked, package the code into a zip archive
@@ -36,13 +45,17 @@ const CodeEditor: React.FC = () => {
     const zip = new JSZip();
     zip.file("text.txt", code);
     zip.folder("assets");
-    const blob = await zip.generateAsync({ type: "blob" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = "MyDocument.textbundle";
-    a.click();
-    URL.revokeObjectURL(url);
+    try {
+      const blob = await zip.generateAsync({ type: "blob" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = "MyDocument.textbundle";
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error generating zip file:", error);
+    }
   };
 
   return (
