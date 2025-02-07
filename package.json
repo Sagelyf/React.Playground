@@ -1,0 +1,25 @@
+package.json
+
+{
+  "name": "react-live-code-playground",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://yourusername.github.io/react-live-code-playground",
+  "dependencies": {
+    "@uiw/react-codemirror": "^5.0.0",
+    "jszip": "^3.10.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  }
+}
