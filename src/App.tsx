@@ -1,5 +1,3 @@
-App.tsx
-
 import React from 'react';
 import CodeEditor from './components/CodeEditor';
 
@@ -9,6 +7,10 @@ const App: React.FC = () => {
       <CodeEditor />
     </div>
   );
+};
+
+export const SomeOtherComponent = () => {
+  // component logic
 };
 
 export default App;
