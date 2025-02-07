@@ -1,10 +1,8 @@
-package.json
-
 {
-  "name": "react-live-code-playground",
+  "name": "ReactPlayground",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yourusername.github.io/react-live-code-playground",
+  "homepage": "https://github.com/mcochranca/ReactPlayground",
   "dependencies": {
     "@uiw/react-codemirror": "^5.0.0",
     "jszip": "^3.10.0",
