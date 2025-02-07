@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import CodeMirror, { ReactCodeMirrorRef } from '@uiw/react-codemirror';
-import 'codemirror/lib/codemirror.css';
-import { javascript } from '@codemirror/lang-javascript';
+import { javascript } from '@codemirror/lang-javascript'; // Import the 'javascript' function from '@codemirror/lang-javascript'
 import JSZip from 'jszip';
 
 const CodeEditor: React.FC = () => {
@@ -49,7 +48,7 @@ const CodeEditor: React.FC = () => {
         <CodeMirror
           value={code}
           height="300px"
-          extensions={[javascript()]}
+          extensions={[javascript()]} // Use the 'javascript' function here
           onChange={(value) => {
             setCode(value);
           }}
